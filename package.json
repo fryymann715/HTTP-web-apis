@@ -1,0 +1,32 @@
+{
+  "name": "pinterestmanager",
+  "version": "1.0.0",
+  "description": "## Challenge Rating",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon webserver/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eobaah/HTTP-web-apis.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eobaah/HTTP-web-apis/issues"
+  },
+  "homepage": "https://github.com/eobaah/HTTP-web-apis#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "morgan": "^1.8.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-preset-env": "^1.4.0",
+    "nodemon": "^1.11.0"
+  }
+}
