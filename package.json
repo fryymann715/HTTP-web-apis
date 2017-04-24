@@ -18,10 +18,12 @@
   },
   "homepage": "https://github.com/eobaah/HTTP-web-apis#readme",
   "dependencies": {
+    "babel-polyfill": "^6.23.0",
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
-    "morgan": "^1.8.1"
+    "morgan": "^1.8.1",
+    "pinterest-api": "^1.1.4"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
