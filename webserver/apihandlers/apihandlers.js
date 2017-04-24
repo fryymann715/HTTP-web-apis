@@ -6,12 +6,22 @@ const apiHandler = {
   },
 
   getPins: accountObject => {
-    console.log("account object ========>", accountObject );
-    return Promise.resolve( accountObject.getPins( pins => pins ) )
-  }
+    return new Promise( ( resolve, reject ) =>
+        accountObject.getPins( pins =>
+          resolve( pins ) ) )
+  },
 
 }
 
+/*
+
+Example of how this shit works.
 
 const testIan = apiHandler.getAccount ("ideans")
-console.log( apiHandler.getPins( testIan ) )
+
+
+apiHandler.getPins( testIan )
+          .then( pins => {
+            console.log(pins)
+})
+*/
