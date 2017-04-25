@@ -2,7 +2,10 @@ import pinterestAPI from 'pinterest-api'
 
 const apiHandler = {
   getAccount: name => {
-    return pinterestAPI( name )
+
+    const account = pinterestAPI( name )
+    console.log(account.getPins);
+    return account
   },
 
   getPins: accountObject => {
@@ -13,15 +16,9 @@ const apiHandler = {
 
 }
 
-/*
+const testIan = apiHandler.getAccount ("231341^$^$$#")
 
-Example of how this shit works.
-
-const testIan = apiHandler.getAccount ("ideans")
-
-
-apiHandler.getPins( testIan )
-          .then( pins => {
-            console.log(pins)
-})
-*/
+// apiHandler.getPins( testIan )
+//           .then( pins => {
+//             console.log(pins)
+// })
