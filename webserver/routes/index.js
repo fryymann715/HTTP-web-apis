@@ -2,12 +2,23 @@ const express = require('express')
 const router = express.Router()
 const https = require('https');
 const querystring = require( 'querystring' )
-
+const setToken = require( '../tokens' )
+const passport = require('passport')
 
 router.get('/', (request, response, next) => {
   response.json({ test: 'this is a test' })
 })
 
+router.get( '/auth/twitter/callback', ( request, response, next ) => {
+  console.log( 'INSIDE THE CALLBACK')
+  passport.authenticate('twitter', { failureRedirect: '/' }),
+   function(req, res) {
+     // Successful authentication, redirect home.
+     response.json(({ worked: 'The shit worked.'}))
+   }
+})
+
+/*
 router.get('/pinterest/callback', (request, response, next) => {
   const params = {
     grant_type: 'authorization_code',
@@ -35,6 +46,7 @@ router.get('/pinterest/callback', (request, response, next) => {
     })
     blarg.on( 'end', () => {
       console.log( result )
+      setToken( result.access_token )
       response.json( JSON.parse( result ) )
 
     })
@@ -42,7 +54,7 @@ router.get('/pinterest/callback', (request, response, next) => {
 
   r.end()
 })
-
+*/
 /*
 postBody = querystring.stringify(postData);
 //init your options object after you call querystring.stringify because you  need
