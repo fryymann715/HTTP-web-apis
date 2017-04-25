@@ -7,43 +7,29 @@ router.get('/', (request, response, next) => {
 } )
 
 router.get('/login', (request, response, next) => {
-
-  // const headers = new Headers({
-  //   'Accept': 'text/plain'
-  // });
-
-  const initSettings = { method: 'GET',
-                //  headers: headers,
-                 mode: 'cors' }
-
   const url = 'https://api.pinterest.com/oauth/?response_type=code&redirect_uri=https://789ee446.ngrok.io/redirect&client_id=4897021005790199447&scope=read_public,write_public&state=768uyFys'
 
-  fetch(url, initSettings)
-  .then( response => {
-    return response.text()
-  }).then( responseText => {
-    console.log('fetch response', responseText)
-    response.send(responseText)
-  });
+  http.get({
+    host: 'api.pinterest.com',
+    path: url
+  }, responseText => {
+    let body = ''
+    responseText.on('data', data => {
+      body += data
+    })
+
+    responseText.on('end', () => {
+      console.log('body is:', body)
+      response.send(body)
+      console.log('finishing')
+    })
+  })
 } )
 
-router.get('/redirect:qs', (request, response, next) => {
-  // console.log()
-  console.log(request.params)
-  console.log(request.body)
-  response.send('works')
-})
-
 router.get('/redirect', (request, response, next) => {
-  // console.log()
-  console.log(request.params)
-  console.log(request.body)
-  response.send('works')
+  console.log('just entered bad redirect area')
+  response.send('no query string provided', request.query.sample)
+  // response.sendStatus(200)
 })
-
-
-
-
-
 
 module.exports = router

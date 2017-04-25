@@ -10,22 +10,22 @@ const server = express()
 
 server.use( logger( "default" ) )
 server.use( bodyParser.json() )
-server.use( bodyParser.urlencoded( { extended:false } ) )
+server.use( bodyParser.urlencoded( { extended:true } ) )
 server.use( cookieParser() )
 
 server.use( express.static( path.join( __dirname, 'public') ) )
 server.use( routes )
 
-server.use( (request, response, next) => {
-  let error = new Error('not found')
-  error.status = 404
-  next( error )
-})
+// server.use( (request, response, next) => {
+//   let error = new Error('not found')
+//   error.status = 404
+//   next( error )
+// })
 
-server.use( (request, response, next) => {
-  response.status( error.status || 500 )
-  response.json( { error:error.message || 'internal server error' } )
-})
+// server.use( (request, response, next) => {
+//   response.status( error.status || 500 )
+//   response.json( { error:error.message || 'internal server error' } )
+// })
 
 server.listen( 3000 )
 
