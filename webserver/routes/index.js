@@ -1,8 +1,8 @@
 const express = require('express')
+const twitterApi = require('twitter')
 const router = express.Router()
 const https = require('https');
 const querystring = require( 'querystring' )
-const setToken = require( '../tokens' )
 const passport = require('passport')
 
 router.get('/', (request, response, next) => {
@@ -16,6 +16,19 @@ router.get( '/auth/twitter/callback', ( request, response, next ) => {
      // Successful authentication, redirect home.
      response.json(({ worked: 'The shit worked.'}))
    }
+})
+
+const twitThing = new twitterApi({
+  consumer_key: '4sUAsRJJkPoKu8CngVn6xXZTZ',
+  consumer_secret: '8gnySWimlosUY5ad1Cw4aC71FZB3LyXwzL6K1yRTVEEtkQ5E26',
+  access_token_key: '769793430-4QciEWdCK9hkT72iuwt7ElyTpeCDq2S1zi0y8kEj',
+  access_token_secret:  'nSGQIiLJuxnJeNikYoEq8dcV9TktdiCmiXTwquosaU0Zs'
+})
+
+router.get( '/feed', (request, response, next ) => {
+  twitThing.get( 'statuses/user_timeline', { 'q': { screen_name: 'ideans715', recent:'mixed'} }, (error, tweets, twitterResponse) => {
+    response.json(tweets)
+  })
 })
 
 /*
