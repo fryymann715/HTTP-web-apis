@@ -1,12 +1,25 @@
 const express = require('express')
 const router = express.Router()
-const https = require('https');
+const http = require('http');
 const querystring = require( 'querystring' )
-
+const passport = require('passport')
 
 router.get('/', (request, response, next) => {
   response.json({ test: 'this is a test' })
 })
+
+router.get('/auth/twitter', passport.authenticate('twitter'))
+
+router.get( '/auth/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: '/yousucks' }),
+  function(req, res) {
+    res.send('Things')
+  })
+
+
+/*
+
+https://api.twitter.com/1.1/search/tweets.json?q=%40twitterapi
 
 router.get('/pinterest/callback', (request, response, next) => {
   const params = {
@@ -35,6 +48,7 @@ router.get('/pinterest/callback', (request, response, next) => {
     })
     blarg.on( 'end', () => {
       console.log( result )
+      setToken( result.access_token )
       response.json( JSON.parse( result ) )
 
     })
@@ -42,7 +56,7 @@ router.get('/pinterest/callback', (request, response, next) => {
 
   r.end()
 })
-
+*/
 /*
 postBody = querystring.stringify(postData);
 //init your options object after you call querystring.stringify because you  need
@@ -62,15 +76,6 @@ var postreq = https.request(options, function (res) {
 });
 postreq.write(postBody);
 postreq.end();
-*/
-
-/*
-https://api.pinterest.com/v1/oauth/token with the following parameters.
-Parameter 	Description
-grant_type 	Must take the value authorization_code.
-client_id 	Your app ID. You can get this ID from your app page.
-client_secret 	Your app secret. You can get this from your app page.
-code 	The access code you received from your redirect URI.
 */
 
 
