@@ -27,10 +27,31 @@ const twitThing = new twitterApi({
 
 router.get( '/feed', (request, response, next ) => {
   twitThing.get( 'statuses/user_timeline', { 'q': { screen_name: 'resoltz', recent:'mixed'} }, (error, tweets, twitterResponse) => {
-    response.json(tweets)
+    const pugTweets = []
+    for(let tweet in tweets) {
+      pugTweets.push({
+        message: tweets[tweet].text,
+        date: tweets[tweet].created_at
+      })
+    }
+    response.render('tweetfeed', {pugTweets})
   })
 })
 
+router.get('/create', (request, response, next) => {
+  response.render('tweetcreate')
+})
+
+router.post('/create', (request, response, next) => {
+  twitThing.post( 'statuses/update', {status: request.body.msg}, function(error, tweet, tweetResponse) {
+    if (!error) {
+      console.log(tweet);
+      return response.send('Success').status(200)
+    }
+    console.log(error)
+    response.send('Error: ' + error[0].message).status(500)
+  })
+})
 /*
 router.get('/pinterest/callback', (request, response, next) => {
   const params = {

@@ -8,6 +8,7 @@ const routes = require('./routes')
 const session = require('express-session')
 const TwitterStrategy = require('passport-twitter')
 const passport = require('passport')
+const pug = require('pug')
 
 const getUrl = require('./config/url/')
 const generatePinterestStrategy = require('./authentication/pinterest/')
@@ -52,6 +53,10 @@ server.use( session({
 }))
 server.use( passport.initialize() )
 server.use( passport.session() )
+server.use(express.static(path.join(__dirname, 'public')))
+
+server.set('views', path.join(__dirname, 'views'));
+server.set('view engine', 'pug');
 
 server.get('/auth/twitter', passport.authenticate('twitter'))
 
