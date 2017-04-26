@@ -19,14 +19,14 @@ router.get( '/auth/twitter/callback', ( request, response, next ) => {
 })
 
 const twitThing = new twitterApi({
-  consumer_key: '4sUAsRJJkPoKu8CngVn6xXZTZ',
-  consumer_secret: '8gnySWimlosUY5ad1Cw4aC71FZB3LyXwzL6K1yRTVEEtkQ5E26',
-  access_token_key: '769793430-4QciEWdCK9hkT72iuwt7ElyTpeCDq2S1zi0y8kEj',
-  access_token_secret:  'nSGQIiLJuxnJeNikYoEq8dcV9TktdiCmiXTwquosaU0Zs'
+  consumer_key: '2cBUCImsndRCFeeThfdKZUi0G',
+  consumer_secret: 'uJt9LevtTIzViixt0eQWbR3zlJyESkXFKlYvLdXbIErKTPB1RO',
+  access_token_key: '393740410-ZOXcKE0Y6RKzxONyhPM4isdclnlQaWpVMvk5rfG5',
+  access_token_secret:  'hJQhwK9mGpwkGIyuY0SOD0NPICZnzxXLIica1eg46bzni'
 })
 
 router.get( '/feed', (request, response, next ) => {
-  twitThing.get( 'statuses/user_timeline', { 'q': { screen_name: 'ideans715', recent:'mixed'} }, (error, tweets, twitterResponse) => {
+  twitThing.get( 'statuses/user_timeline', { 'q': { screen_name: 'resoltz', recent:'mixed'} }, (error, tweets, twitterResponse) => {
     response.json(tweets)
   })
 })
