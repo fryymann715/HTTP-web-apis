@@ -2,6 +2,17 @@ extends layout
 
 block content
   .container
-    .create
-      input(id="msg", name="message")
-      input(id="submit", type="submit")
+  .outerContainer
+    h1 The Tweet of All Tweets
+    .innerContainer
+      .leftImgContainer
+        img.resoltzLogo(src='http://pbs.twimg.com/profile_images/742085740859822080/QO-fl2Lh_normal.jpg')
+      form.rightImgContainer.createTweetForm
+        label
+          | Message: 
+        input(id="msg", name="message")
+        label
+          | Image: 
+        input(id="img", name="entities.media.media_url")
+        input(id="submit", type="submit")
+  script(src="/javascripts/createTweet.js")

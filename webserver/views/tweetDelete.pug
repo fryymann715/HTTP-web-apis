@@ -1,0 +1,16 @@
+extends layout
+
+block content
+
+  .container
+    .deleteContainer
+      h1 do you want to delete?
+      h5 #{id_str}
+      .deleteButtonContainer
+        button(id="yesButton" value="Yes")
+          | Yes
+        a(href=`/feed`)
+          button(value="No")
+            | No
+        
+  script(src='/javascripts/deleteTweet.js')

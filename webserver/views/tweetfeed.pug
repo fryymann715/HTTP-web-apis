@@ -1,9 +1,27 @@
 extends layout
 
 block content
-  .container
-    .listOfTweets
-      for tweet in pugTweets
-        .message
-          p=tweet.message
-          p=tweet.date
+  .outerContainer
+    h1 The Tweets of All Tweets
+    .tweetButtons
+      .createTweetBtn
+        a(href='/create')
+          | Create tweet
+    for tweet in tweets
+      .middleContainer
+        .innerContainer
+          .leftImgContainer
+            img.resoltzLogo(src=tweet.user.profile_image_url)
+          .rightImgContainer
+            if tweet.extended_entities
+              img.tweetImg(src=tweet.extended_entities.media[0].media_url)
+            p=tweet.created_at
+            p=tweet.text
+        .tweetControlButtons
+          .editTweetBtn.edits
+            a(id=tweet.id, href=`/edit/${tweet.id}`)
+              | Edit tweet
+          .deleteTweetBtn.edits
+            a(id=tweet.id, href=`/delete/${tweet.id_str}`)
+              | Delete tweet
+          

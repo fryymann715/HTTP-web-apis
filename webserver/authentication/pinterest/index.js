@@ -6,7 +6,6 @@ const scope = ['read_public', 'read_relationships']
 const state = true
 
 const verify = ( accessToken, refreshToken, profile, done ) => {
-  console.log( 'in verify: ', accessToken, refreshToken, profile, done )
 
   return done( {} /* ERROR? */ , {} /* USER? */ )
 }

@@ -1,0 +1,15 @@
+extends layout
+
+block content
+
+  .container
+    h1 #{editTweet.id}
+    form.editTweetForm 
+      input(id="tweetID", name="tweetID", type='hidden', value=editTweet.id)
+      label
+        | Message: 
+      input(id="msg", name="message", value=editTweet.text)
+      label
+        | Image: 
+      input(id="img", name="entities.media.media_url")
+      input(id="submit", type="submit")

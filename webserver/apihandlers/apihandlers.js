@@ -12,16 +12,3 @@ const apiHandler = {
   },
 
 }
-
-/*
-
-Example of how this shit works.
-
-const testIan = apiHandler.getAccount ("ideans")
-
-
-apiHandler.getPins( testIan )
-          .then( pins => {
-            console.log(pins)
-})
-*/
